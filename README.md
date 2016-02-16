@@ -4,8 +4,6 @@
 
 This application uses KNN to create an artificial agent that can recommend eating places to a user. Our agent will parse through the user's information with an aim to understand different characteristics about the user. Then based on that we will provide different recommendations to the user. Additionally, through user’s feedback, the agent will evolve its preference model and recommendation function. 
 
-This project is our submission for CS 5100 (Northeastern University).
-
 ## Packages Used
 
 `pymongo >= 3.1.1`
@@ -40,6 +38,9 @@ To install all packages `cd` to the working directory and run,
     - csv
     - json
     
+- 'lib:'
+    This folder contains the codes for manipulating data and algorithms.
+
 - `algorithm:`
     This folder contains the actual KNN algo.
 
@@ -72,10 +73,10 @@ It takes `time` and `location` restrictions into consideration.
 
 Our algorithm gives an MAE (Mean Absolute Error) of:
 
-- Without any restrictions on the database: `0.7`
-- With time and location restrictions on the database: `1`
+- Without any restrictions on the database: `-`
+- With time and location restrictions on the database: `-`
 
-The fact that we already have a restricted database gives us a MAE of `0.7` but restricting it further changes our MAE value by a factor of `0.3`. With a deeper dataset our algorithm would give an even better MAE value. 
+The fact that we already have a restricted database gives us a MAE of `-` but restricting it further changes our MAE value by a factor of `-`. With a deeper dataset our algorithm would give an even better MAE value. 
     
 
 ## Future Scope
@@ -84,11 +85,12 @@ This application can be extended by adding Natural Language Processing. In futur
 
 All these factors we believe would help us in improving our recommendations and giving even better results.
 
-## Team
+##Research Professor
+* Bart, Yakov [Northeastern]
 
-* [Bhanu Pratap Jain](http://github.com/bhanupratapjain)
-* [Rohit Begani](https://github.com/rohitbegani)
+## Research Assistant
 * [Ronny Mathew](http://github.com/ronnygeo)
+
 
 ## License
 
