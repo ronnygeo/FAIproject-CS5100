@@ -2,21 +2,14 @@ from pymongo import MongoClient
 
 client = MongoClient()
 
-db = client['moviedb']
+db = client['yelp']
 movie_collection = db.movies
 ratings_collection = db.ratings
 tags_collection = db.tags
 links_collection = db.links
 
-
-def db_connect(db):
-    client = MongoClient()
-    db = client[db]
-    return db
-
-
-def get_collection(name):
-    return db.name
+def findUser(userId):
+    return db.user.find_one({"user_id": userId})
 
 
 def find_movie(name):
