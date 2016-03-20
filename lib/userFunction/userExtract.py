@@ -3,9 +3,6 @@ from mongoOperations import findUser
 userId = "fHtTaujcyKvXglE33Z5yIw"
 user = findUser(userId)
 
-
-
-
 #print user
 friends = user["friends"]
 
