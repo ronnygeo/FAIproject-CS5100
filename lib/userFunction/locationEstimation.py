@@ -1,5 +1,6 @@
 from mongoOperations import *
 from latLonConversion import getLatLngCenter
+import reverse_geocoder as rg
 
 userId = "fHtTaujcyKvXglE33Z5yIw"
 user = findUser(userId)
@@ -13,12 +14,12 @@ for review in reviews:
 	#print business
 	latBus = business['latitude']
 	lonBus = business['longitude']
-
+	print rg.search((latBus, lonBus))[0]
 	latlondeg.append({"LATIDX": latBus, "LNGIDX": lonBus})
 
-print latlondeg
+#print latlondeg
 print getLatLngCenter(latlondeg)
-	#
+
 	# lon1, lat1, lon2, lat2 = map(radians, [lonBus, latBus, lonUser, latUser])
 	# dlon = lon2 - lon1
 	# dlat = lat2 - lat1
