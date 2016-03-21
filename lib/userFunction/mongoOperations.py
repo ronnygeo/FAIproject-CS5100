@@ -8,6 +8,9 @@ review_collection = db.review
 business_collection = db.business
 tip_collection = db.tip
 
+def getUsers():
+    return user_collection.find()
+
 def findUser(userId):
     return user_collection.find_one({"user_id": userId})
 
