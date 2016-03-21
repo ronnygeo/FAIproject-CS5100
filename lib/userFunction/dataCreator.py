@@ -12,9 +12,9 @@ for user in users:
 	data[userId] = getUserLocation(userId)
 	friends[userId] = extractFriends(userId)
 
-with open('../static/json/user_country_data.json', 'w+') as outfile:
+with open('../../static/json/user_country_data.json', 'w+') as outfile:
 	json.dump(data, outfile)
 
-with open('../static/json/user_friends_data.json', 'w+') as outfile:
+with open('../../static/json/user_friends_data.json', 'w+') as outfile:
 	json.dump(friends, outfile)
 

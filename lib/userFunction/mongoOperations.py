@@ -8,8 +8,11 @@ review_collection = db.review
 business_collection = db.business
 tip_collection = db.tip
 
-def getUsers():
-    return user_collection.find()
+def getUsers(count=None):
+    if count == None:
+        return user_collection.find().batch_size(50)
+    else:
+        return user_collection.find().limit(count)
 
 def findUser(userId):
     return user_collection.find_one({"user_id": userId})

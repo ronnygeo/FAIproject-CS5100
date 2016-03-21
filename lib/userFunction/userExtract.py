@@ -21,9 +21,11 @@ def extractFriends(userId):
 			#print findUser(friend)
 			currentUsers.append(friend)
 
+	return currentUsers
+
 	# print currentUsers
 
-	for user in currentUsers:
-		print user
-		if user != userId:
-			print findUser(user)
+	# for user in currentUsers:
+	# 	print user
+	# 	if user != userId:
+	# 		print findUser(user)
