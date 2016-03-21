@@ -2,8 +2,6 @@ import unicodedata
 
 from models.hours import Hours
 from util.valueExtractor import ValueExtractor
-
-
 class Business(object):
     def __init__(self, name=None, business_id=None, location_lon=None, location_lat=None, stars=None, open_now=None,
                  wifi=None, alcohol=None, noise_level=None, music=None, attire=None, ambience=None, price_range=None,
