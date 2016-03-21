@@ -4,6 +4,11 @@ userId = "fHtTaujcyKvXglE33Z5yIw"
 
 
 def extractFriends(userId):
+	"""
+	:param userId:
+	:return: Returns a list of all friends of the user.
+	Finds all the friends of a particular user.
+	"""
 	user = findUser(userId)
 
 	#print user

@@ -5,6 +5,11 @@ import operator
 from businessCountry import BusinessCountry
 
 def getUserLocation(userId):
+	"""
+	:param userId:
+	:return: userCoords [lat, lon]
+	Function to triangular the location of a user based on his reviewed business locations.
+	"""
 	user = findUser(userId)
 
 	reviews = findReviews(userId)
@@ -59,8 +64,8 @@ def getUserLocation(userId):
 	# if distance < rad:
 	# 	newData.append(b)
 
-print getUserLocation("fHtTaujcyKvXglE33Z5yIw")
+#print getUserLocation("fHtTaujcyKvXglE33Z5yIw")
 
-print getUserLocation("4mk28YCp7kCKI6WUp3Gl7w")
+#print getUserLocation("4mk28YCp7kCKI6WUp3Gl7w")
 
 #getUserLocation("kGgAARL2UmvCcTRfiscjug")

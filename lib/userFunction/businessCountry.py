@@ -1,4 +1,8 @@
 class BusinessCountry(object):
+	"""
+	Business Country Object used to store business coordinates and count.
+	Properties: count, list of coordinates.
+	"""
 
 	def __init__(self, count=0, coords=None):
 		self.count = count

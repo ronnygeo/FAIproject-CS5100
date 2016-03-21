@@ -10,8 +10,11 @@ def degr2rad(degr):
 
 
 def getLatLngCenter(latLngInDegr):
-	# LATIDX = 0
-	# LNGIDX = 1
+	"""
+	:param latLngInDegr:
+	:return: Coordinates [lat, lon]
+	Returns the central coordinates based on the list of coordinates passed.
+	"""
 	sumX = 0
 	sumY = 0
 	sumZ = 0
