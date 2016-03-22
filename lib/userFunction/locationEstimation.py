@@ -13,7 +13,7 @@ def getUserLocation(userId):
 	user = findUser(userId)
 	max = -9999
 	userCountryKey = -1
-	reviews = findReviews(userId, 500)
+	reviews = findReviews(userId)
 	bCountry = {}
 	latlondeg = []
 	#print reviews.count()
@@ -26,12 +26,14 @@ def getUserLocation(userId):
 		business = findBusiness(review['business_id'])
 		latBus = business['latitude']
 		lonBus = business['longitude']
-		businessCountryId = rg.search((latBus, lonBus))[0]["cc"]
+		#print rg.search((latBus, lonBus))
+		businessCityId = rg.search((latBus, lonBus))[0]["name"]
+		#print businessCityId
 		try:
-			bCountry[businessCountryId].addCoord((latBus, lonBus))
+			bCountry[businessCityId].addCoord((latBus, lonBus))
 		except KeyError:
-			bCountry[businessCountryId] = businessCountryObj
-			bCountry[businessCountryId].addCoord((latBus, lonBus))
+			bCountry[businessCityId] = businessCountryObj
+			bCountry[businessCityId].addCoord((latBus, lonBus))
 	for k, v in bCountry.iteritems():
 		if v.getCount() > max:
 			max = v.getCount()
