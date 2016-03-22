@@ -12,6 +12,7 @@ usersCount = users.count()
 for user in users:
 	i += 1
 	print "Processing User ", i,", ", user['name'],", of ", usersCount
+	print "Percentage Complete: ", float(i/usersCount) * 100,"%"
 	userId = user['user_id']
 	data[userId] = getUserLocation(userId)
 	#print data[userId]
