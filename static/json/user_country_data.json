@@ -1,7 +1,1 @@
-{
-  "ysYmC-ufbdmVEX9yAv-VEQ": "US",
-  "UTS9XcT14H2ZscRIf0MYHQ": "US",
-  "WPOKvkacSKHx_bIG1alFiA": "US",
-  "fHtTaujcyKvXglE33Z5yIw": "US",
-  "SIBCL7HBkrP4llolm4SC2A": "US"
-}
+{"ysYmC-ufbdmVEX9yAv-VEQ": {"name": "Madison", "cc": "US", "lon": "-89.40123", "admin1": "Wisconsin", "admin2": "Dane County", "lat": "43.07305"}, "UTS9XcT14H2ZscRIf0MYHQ": {"name": "Spring Valley", "cc": "US", "lon": "-115.245", "admin1": "Nevada", "admin2": "Clark County", "lat": "36.10803"}, "WPOKvkacSKHx_bIG1alFiA": {"name": "Paradise", "cc": "US", "lon": "-115.14666", "admin1": "Nevada", "admin2": "Clark County", "lat": "36.09719"}, "fHtTaujcyKvXglE33Z5yIw": {"name": "Champaign", "cc": "US", "lon": "-88.24338", "admin1": "Illinois", "admin2": "Champaign County", "lat": "40.11642"}, "SIBCL7HBkrP4llolm4SC2A": {"name": "Paradise", "cc": "US", "lon": "-115.14666", "admin1": "Nevada", "admin2": "Clark County", "lat": "36.09719"}}

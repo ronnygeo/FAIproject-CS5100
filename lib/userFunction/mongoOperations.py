@@ -27,13 +27,17 @@ def findUser(userId):
     """
     return user_collection.find_one({"user_id": userId})
 
-def findReviews(userId):
+def findReviews(userId, count=None):
     """
     :param userId:
     :return: all the reviews of the user
      Returns all the reviews created by the user.
     """
-    return review_collection.find({"user_id": userId})
+    if count == None:
+        return review_collection.find({"user_id": userId})
+    else:
+        return review_collection.find({"user_id": userId}).limit(count)
+
 
 def findBusiness(businessId):
     """
