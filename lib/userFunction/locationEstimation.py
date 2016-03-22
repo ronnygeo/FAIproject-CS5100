@@ -21,7 +21,7 @@ def getUserLocation(userId):
 	reviewsCount = reviews.count()
 	for review in reviews:
 		reviewIndex += 1
-		print "Processing Review ", reviewIndex, " of ", reviewsCount, " of user: ", user['name']
+		#print "Processing Review ", reviewIndex, " of ", reviewsCount, " of user: ", user['name']
 		businessCountryObj = BusinessCountry()
 		business = findBusiness(review['business_id'])
 		latBus = business['latitude']
