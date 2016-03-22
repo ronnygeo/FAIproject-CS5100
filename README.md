@@ -10,6 +10,13 @@ This application uses KNN to create an artificial agent that can recommend eatin
 
 `plotly`
 
+`reverse-geocoder`
+
+`numpy`
+
+`scipy`
+
+
 To install all packages `cd` to the working directory and run, 
 
 `pip install -e .`

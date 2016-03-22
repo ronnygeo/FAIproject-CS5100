@@ -4,7 +4,8 @@ from setuptools import setup, find_packages
 
 requires = [
         'pymongo',
-        'plotly'
+        'plotly',
+        'reverse-geocoder'
         ]
 
 setup(
