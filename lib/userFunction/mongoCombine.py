@@ -14,11 +14,11 @@ db.create_collection('user_review')
 users = []
 i = 1
 for user in user_collection.find():
-	print i
+	print "user", i
 	user['reviews'] = review_collection.find({'user_id': user['user_id']})
 	r = 1
 	for review in user['reviews']:
-		print r
+		print "review", r
 		review['business_data'] = findBusiness([review['business_id']])
 		r += 1
 	users.append(user)
