@@ -72,3 +72,57 @@ def getUserLocation(userId):
 #print getUserLocation("4mk28YCp7kCKI6WUp3Gl7w")
 
 #getUserLocation("kGgAARL2UmvCcTRfiscjug")
+
+
+def getUserLocationNewModel(userId):
+	"""
+	:param userId:
+	:return: userCoords [lat, lon]
+	Function to triangular the location of a user based on his reviewed business locations.
+	"""
+	max = -9999
+	userCountryKey = -1
+	reviews = findReviewUserBusinessByUserId(userId)
+	bCountry = {}
+	latlondeg = []
+	#print reviews.count()
+	reviewIndex = 0
+	# reviewsCount = reviews.count()
+	for review in reviews:
+		# reviewIndex += 1
+		#print "Processing Review ", reviewIndex, " of ", reviewsCount, " of user: ", user['name']
+		businessCountryObj = BusinessCountry()
+		business = review['business_details']
+		latBus = business['latitude']
+		lonBus = business['longitude']
+		#print rg.search((latBus, lonBus))
+		businessCityId = rg.search((latBus, lonBus))[0]["name"]
+		#print businessCityId
+		try:
+			bCountry[businessCityId].addCoord((latBus, lonBus))
+		except KeyError:
+			bCountry[businessCityId] = businessCountryObj
+			bCountry[businessCityId].addCoord((latBus, lonBus))
+
+	for k, v in bCountry.iteritems():
+		if v.getCount() > max:
+			max = v.getCount()
+			userCountryKey = k
+	#userCountryKey = max(bCountry.iteritems(), key=operator.itemgetter(1))[0]
+
+	for k, v in bCountry.items():
+		#print v
+		#print v.getCount()
+		#print v.getCoords()
+		if k == userCountryKey:
+			#print v[1]
+			for loc in v.getCoords():
+				latlondeg.append({"LATIDX": loc[0], "LNGIDX": loc[1]})
+
+	#print latlondeg
+	# Triangularing user coords.
+	userCoords = getLatLngCenter(latlondeg)
+	userCountry = rg.search((userCoords[0], userCoords[1]))[0]
+	userCoords.append(userCountry)
+	#print userCountry
+	return userCountry

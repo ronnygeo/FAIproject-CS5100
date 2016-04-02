@@ -7,6 +7,8 @@ user_collection = db.user
 review_collection = db.review
 business_collection = db.business
 tip_collection = db.tip
+review_user_business_collection = db.review_user_business
+
 
 def getUsers(count=None):
     """
@@ -46,6 +48,12 @@ def findBusiness(businessId):
      Returns the particular business object from the database.
     """
     return business_collection.find_one({"business_id": businessId})
+
+def findReviewUserBusinessByUserId(userId, count=None):
+    if count == None:
+        return review_user_business_collection.find({"user_id": userId})
+    else:
+        return review_user_business_collection.find({"user_id": userId}).limit(count)
 
 #
 # def test():
