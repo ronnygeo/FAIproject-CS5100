@@ -28,3 +28,6 @@
 
 *.egg-info
 models/user.pyc
+
+static/csv
+static/json
