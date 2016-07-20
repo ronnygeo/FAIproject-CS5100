@@ -21,7 +21,7 @@ print REF_USER_ID
 
 if USE_FRIENDS:
     friends_data = getUserFriends(REF_USER_ID)
-    friends = [REF_USER_ID] + ["friends"]
+    friends = [REF_USER_ID] + friends_data["friends"]
     print "No of friends ", friends_data["friends_count"]
     dataSet.getRawData(friends)
 else:
@@ -60,7 +60,7 @@ for index, p in enumerate(predictions):
               getRating(round(p.predictionScore)),
               index + 1))
 
-print "Mean Absolute Error (FILTERS: %s): %s" % ((ENABLE_DISTANCE_FILTER or ENABLE_TIME_FILTER), MAE(predictions, dataSet.businessModels))
+print "Mean Absolute Error (FILTERS: %s): %s" % ((ENABLE_DISTANCE_FILTER or ENABLE_TIME_FILTER or USE_FRIENDS), MAE(predictions, dataSet.businessModels))
 if ENABLE_DISTANCE_FILTER: print "DISTANCE FILTER: ON"
 else: print "DISTANCE FILTER: OFF"
 if ENABLE_TIME_FILTER: print "TIME FILTER: ON"

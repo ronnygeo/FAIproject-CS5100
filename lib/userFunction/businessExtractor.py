@@ -21,7 +21,7 @@ def getUserReviews(userId):
 	for r in db.review.find({"user_id": {"$in": userId}}):
 		#getting the details of the business.
 		cursor = db.business.find({"business_id": r["business_id"],
-										  "categories": {"$in": ["Restaurants"] }})
+										  "categories": {"$in": ["Restaurants", "Fast Food", "Food", "Coffee & Tea"] }})
 		if cursor.count():
 			business_data = cursor[0]
 			business_attr = business_data["attributes"]
@@ -35,6 +35,17 @@ def getUserReviews(userId):
 	return reviewdb
 
 
+def getUserReviews3(userId):
+	for r in db.review_business.find({"user_id": {"$in": userId}}):
+		business_data = r["business_detail"]
+		del r["business_detail"]
+		new_info = r.copy()
+		new_info.update(business_data)
+		new_info["userRating"] = r["stars"]
+		reviewdb.append(new_info)
+	return reviewdb
+
+
 def getUserReviews2(userId):
 
 	for r in database.find_one({"_id": {"$in": userId}})["reviews"]:
@@ -45,3 +56,4 @@ def getUserReviews2(userId):
 		new_info["userRating"] = r["stars"]
 		reviewdb.append(new_info)
 	return reviewdb
+

@@ -7,7 +7,7 @@ from math import sin, cos, radians, atan2, sqrt
 from models.user import User
 from settings import REF_USER_ID
 from util.jsonToObject import Decode
-from lib.userFunction.businessExtractor import getUserReviews2
+from lib.userFunction.businessExtractor import getUserReviews3
 from lib.userFunction.locationEstimation import getUserLocationNewModel
 
 class DataSet(object):
@@ -24,7 +24,7 @@ class DataSet(object):
 
     #get raw reviews, takes array of userIds
     def getRawData(self, userId):
-        self._rawData = getUserReviews2(userId)
+        self._rawData = getUserReviews3(userId)
 
     def sliceData(self):
         test_cutoff = int(math.floor(len(self.businessModels) / 3))
