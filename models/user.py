@@ -1,7 +1,7 @@
 from settings import USER_TRAINING_FACTOR
 
 class User(object):
-    def __init__(self, user_id=None, name=None, location_lat=None, location_lon=None, stars=None, userRating=None,
+    def __init__(self, user_id=None, location_lat=None, location_lon=None, name=None, stars=None, userRating=None,
                  wifi=[], alcohol=[], noise_level=[], music=[], attire=[], ambience=[], price_range=[],
                  good_for=[], parking=[], categories=[], dietary_restrictions=[], misc_attributes=[]
                  ):
@@ -41,21 +41,36 @@ class User(object):
     def user_id(self, user_id):
         self._user_id = user_id
 
-    @property
-    def location_lat(self):
-        return self._location_lat
+    # @property
+    # def location_lat(self):
+    #     return self._location_lat
+	#
+    # @location_lat.setter
+    # def location_lat(self, location_lat):
+    #     self.update_location_lat(location_lat)
+	#
+    # @property
+    # def location_lon(self):
+    #     return self._location_lon
+	#
+    # @location_lon.setter
+    # def location_lon(self, location_lon):
+    #     self.update_location_lon(location_lon)
+    # @property
+    # def location_lat(self):
+    #     return self._location_lat
+	#
+    # @location_lat.setter
+    # def location_lat(self, location_lat):
+    #     self.update_location_lat(location_lat)
+	#
+    # @property
+    # def location_lon(self):
+    #     return self._location_lon
 
-    @location_lat.setter
-    def location_lat(self, location_lat):
-        self.update_location_lat(location_lat)
-
-    @property
-    def location_lon(self):
-        return self._location_lon
-
-    @location_lon.setter
-    def location_lon(self, location_lon):
-        self.update_location_lon(location_lon)
+    # @location_lon.setter
+    # def location_lon(self, location_lon):
+    #     self.update_location_lon(location_lon)
 
     @property
     def stars(self):
@@ -115,9 +130,10 @@ class User(object):
 
     @attire.setter
     def attire(self, attire):
-        if attire:
-            for a in attire:
-                self._attire = self.update_feature_weight(self._attire, attire)
+        self._attire = self.update_feature_weight(self._attire, attire)
+        # if attire:
+        #     for a in attire:
+        #         self._attire = self.update_feature_weight(a, attire)
 
     @property
     def ambience(self):
@@ -187,6 +203,24 @@ class User(object):
             for m in misc_attributes:
                 self._misc_attributes = self.update_feature_weight(self._misc_attributes, m)
 
+    def getAllFeatures(self):
+        data = {}
+        data.stars = self._stars
+        data.userRating = self._userRating
+        data.wifi = self._wifi
+        data.alcohol = self._alcohol
+        data.noise_level = self._noise_level
+        data.music = self._music
+        data.attire = self._attire
+        data.ambience = self._ambience
+        data.price_range = self._price_range
+        data.good_for = self._good_for
+        data.parking = self._parking
+        data.categories = self._categories
+        data.dietary_restrictions = self._dietary_restrictions
+        data.misc_attributes = self._misc_attributes
+        return data
+
     def __str__(self):
         return "user_id: %s\n" \
                "name: %s\n" \
@@ -225,13 +259,13 @@ class User(object):
                   self._dietary_restrictions,
                   self._misc_attributes)
 
-    def add_features(self, stars=None, userRating=None, location_lat=None, location_lon=None, wifi=[], alcohol=[],
+    def add_features(self, stars=None, userRating=None, wifi=[], alcohol=[],
                      noise_level=[], music=[], attire=[], ambience=[], price_range=[],
                      good_for=[], parking=[], categories=[], dietary_restrictions=[], misc_attributes=[]):
         self.stars = stars
         self.userRating = userRating
-        self.location_lon = location_lon
-        self.location_lat = location_lat
+        # self.location_lon = location_lon
+        # self.location_lat = location_lat
         self.wifi = wifi
         self.alcohol = alcohol
         self.noise_level = noise_level
@@ -279,11 +313,11 @@ class User(object):
             feature[feature.index(f)] = (v, round(w, 4))
         return feature
 
-    def update_location_lat(self, l):
-        self._location_lat = 36.11470649999999
-
-    def update_location_lon(self, l):
-        self._location_lon = -115.17284840000002
+    # def update_location_lat(self, l):
+    #     self._location_lat = 36.11470649999999
+	#
+    # def update_location_lon(self, l):
+    #     self._location_lon = -115.17284840000002
 
     def normalize(self):
         self._wifi = self.normalize_feature_weight(self._wifi)
@@ -301,6 +335,8 @@ class User(object):
 
     def update_user(self, business):
         b = business
-        self.add_features(b.stars, b.userRating, b.location_lat, b.location_lon, b.wifi, b.alcohol, b.noise_level, b.music,
+        self.add_features(b.stars, b.userRating,
+                          b.wifi, b.alcohol, b.noise_level, b.music,
                           b.attire, b.ambience, b.price_range, b.good_for,
                           b.parking, b.categories, b.dietary_restrictions, b.misc_attributes)
+

@@ -83,6 +83,7 @@ def getUserLocationNewModel(userId):
 	max = -9999
 	userCountryKey = -1
 	reviews = findReviewUserBusinessByUserId(userId)
+	# print(reviews)
 	bCountry = {}
 	latlondeg = []
 	#print reviews.count()
@@ -92,7 +93,7 @@ def getUserLocationNewModel(userId):
 		# reviewIndex += 1
 		#print "Processing Review ", reviewIndex, " of ", reviewsCount, " of user: ", user['name']
 		businessCountryObj = BusinessCountry()
-		business = review['business_details']
+		business = review['business_detail'][0]
 		latBus = business['latitude']
 		lonBus = business['longitude']
 		#print rg.search((latBus, lonBus))

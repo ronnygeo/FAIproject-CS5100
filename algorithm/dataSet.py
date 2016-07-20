@@ -5,37 +5,43 @@ from datetime import timedelta
 
 from math import sin, cos, radians, atan2, sqrt
 from models.user import User
-from settings import REF_USER_ID, REF_USER_NAME
+from settings import REF_USER_ID
 from util.jsonToObject import Decode
+from lib.userFunction.businessExtractor import getUserReviews2
+from lib.userFunction.locationEstimation import getUserLocationNewModel
 
 class DataSet(object):
-    def __init__(self, jsonFile=None):
+    def __init__(self, businessModel=None):
         # Store Default Values for KNN
-        self.jsonFile = jsonFile
+        # self.jsonFile = jsonFile
         self.testData = None
         self.trainingData = None
-        self.businessModels = None
-        self.userData = User()
+        self.businessModels = businessModel
+        self.loc = getUserLocationNewModel(REF_USER_ID)
+        self.userData = User(REF_USER_ID, self.loc['lat'], self.loc['lon'])
         self._rawData = None
 
-    def loadRawData(self):
-        complete_jsonFilePath = os.path.join(os.path.abspath(os.curdir), self.jsonFile)
-        with open(complete_jsonFilePath) as data_file:
-            self._rawData = json.load(data_file)
+
+    #get raw reviews, takes array of userIds
+    def getRawData(self, userId):
+        self._rawData = getUserReviews2(userId)
 
     def sliceData(self):
         test_cutoff = int(math.floor(len(self.businessModels) / 3))
         self.testData = self.filterDuplicates(self.businessModels[0:test_cutoff])
         self.trainingData = self.businessModels[test_cutoff:]
 
+    def addTrainData(self):
+        self.trainingData = self.businessModels
+
     def processBusinessModels(self):
-        jsonDecoder = Decode()
-        jsonDecoder.data = self._rawData
-        businessModels = jsonDecoder.getBusiness()
+        Decoder = Decode()
+        Decoder.data = self._rawData
+        businessModels = Decoder.getBusiness()
         self.businessModels = businessModels
 
     def trainUserModel(self):
-        user = User(REF_USER_ID, REF_USER_NAME)
+        user = User(REF_USER_ID, self.loc['lat'], self.loc['lon'])
         for td in self.trainingData:
             user.update_user(td)
         user.normalize()
@@ -73,8 +79,8 @@ class DataSet(object):
         :return: appends business within a mile
         '''
         newData = []
-        latUser = self.userData.location_lat
-        lonUser = self.userData.location_lon
+        latUser = self.userData._location_lat
+        lonUser = self.userData._location_lon
         for b in self.testData:
             latBus = b.location_lat
             lonBus = b.location_lon
@@ -100,3 +106,9 @@ class DataSet(object):
             if f == 0:
                 list.append(d)
         return list
+
+    def find_user_friends(self):
+        pass
+
+    def compute_friend_data(self):
+        pass

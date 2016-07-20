@@ -5,13 +5,14 @@ from models.business import Business
 
 
 class Decode:
-    def __init__(self, jsonFilePath=None, data=None):
-        self._jsonFilePath = jsonFilePath
-        self._data = data
+    def __init__(self, data=None):
+        self.data = data
 
     def getBusiness(self):
         businessList = []
+        # print(self.data)
         for i, obj in enumerate(self.data):
+            # print obj
             business = Business()
             if "business_id" in obj.keys():
                 business.business_id = obj["business_id"]
@@ -32,7 +33,6 @@ class Decode:
             if "userRating" in obj.keys():
                 business.userRating = obj["userRating"]
             businessList.append(self.processBusinessAttributes(business, obj))
-
         return businessList
 
     def processBusinessAttributes(self, business, obj):
@@ -93,5 +93,5 @@ class Decode:
             business.misc_attributes = "drive_through"
         if "Open 24 hours" in attributes.keys() and attributes["Open 24 hours"] is True:
             business.misc_attributes = "open_24_hours"
-
+        # print business
         return business

@@ -27,10 +27,3 @@ def extractFriends(userId):
 			currentUsers.append(friend)
 
 	return currentUsers
-
-	# print currentUsers
-
-	# for user in currentUsers:
-	# 	print user
-	# 	if user != userId:
-	# 		print findUser(user)
